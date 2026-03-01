@@ -8,6 +8,7 @@ class Finding(BaseModel):
     issue: str
     suggestion: str
     severity: str
+    evidence: str = ""
 
 
 class AnalyzeReport(BaseModel):
