@@ -46,3 +46,4 @@ Thumbs.db
 .runtime/
 .claude/commands/
 .logs/
+.beads/
