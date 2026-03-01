@@ -52,6 +52,10 @@ Steps:
 3. Track progress through implement → validate → continuity
 4. If scope grows or validation fails: you assess first, then escalate to Mayor only if the change crosses rig boundaries
 
+**Parallel implementation:** you may dispatch multiple Implementers at once,
+one per independent sub-task. Test Runner does not start until you confirm
+all Implementers are done.
+
 **Escalation rule**: scope grew within this rig → switch to `/crew-feature`. Scope crossed rig boundaries → notify Mayor.
 
 ---
@@ -73,6 +77,10 @@ Steps:
    - CLEAR → proceed
    - BLOCKED → route back to arch with Critic's findings
 4. Implementation, validation, continuity follow
+
+**Parallel implementation:** you may dispatch multiple Implementers at once,
+one per independent sub-task. Test Runner does not start until you confirm
+all Implementers are done.
 
 **Hard rule**: no code before design-critique is CLEAR.
 
@@ -97,6 +105,10 @@ Steps:
 5. Validation and devops-stability run in parallel after implementation
 6. Continuity only opens when **both** validation and devops pass
 7. Any unexpected system discovered during work → **stop immediately**, assess scope, then notify Mayor if it crosses rig boundaries
+
+**Parallel implementation:** you may dispatch multiple Implementers at once,
+one per independent sub-task. Test Runner does not start until you confirm
+all Implementers are done.
 
 **Hard rules**: Mayor approves before start. Design gate before code. Any surprise stops the convoy — you assess, then escalate if you cannot contain it.
 
