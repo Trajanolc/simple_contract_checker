@@ -1,0 +1,23 @@
+[project]
+name = "simple-contract-app"
+version = "0.1.0"
+description = "Simple FastAPI app to analyze contracts for vague/ambiguous clauses"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.116.1",
+    "uvicorn[standard]==0.35.0",
+    "python-multipart==0.0.20",
+    "python-docx==1.2.0",
+    "pdfplumber==0.11.7",
+    "openai==1.99.5",
+    "pydantic==2.11.7",
+    "pydantic-settings==2.10.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["controllers", "core", "models", "services"]
+include = ["app.py"]
