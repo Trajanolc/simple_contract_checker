@@ -231,3 +231,128 @@ Structural + LLM     /crew-risky *     convoy-governance-ai
 ```
 
 \* Use `/crew-risky` then choose `convoy-governance-ai` formula when creating the convoy.
+
+---
+
+## Polecat role reference
+
+Polecats are ephemeral worker agents. Each has a single responsibility and a strict constraint set. They report back to the crew member — they never self-close, never expand scope, and never escalate directly to Mayor.
+
+| Polecat | Convoy types | Step | Responsibility |
+|---------|-------------|------|---------------|
+| QA Spec | feature, governance | `qa-specification` | Defines DoR, DoD, acceptance criteria, edge cases, and test sketches before any code is written |
+| Architect | feature, governance | `architecture-framing` | Sets system boundaries, guardrails, bead decomposition, and (for governance) per-impact-area risk assessment |
+| Critic | feature, governance | `design-critique` | Reviews arch + qa-spec and issues a CLEAR or BLOCKED verdict — the hard gate before implementation |
+| Prompt Designer | governance-ai only | `prompt-design` | Produces versioned, production-ready prompt specs, behavioral contracts, output schemas, and refusal rules |
+| Implementer | all | `implementation` | Builds one assigned sub-task within architect guardrails; multiple Implementers run in parallel |
+| Test Runner | all | `validation` | Runs the test suite and produces a PASS/FAIL report with logs — does not fix or interpret failures |
+| DevOps | governance | `devops-stability` | Verifies environment reproducibility and produces an environment snapshot — runs in parallel with validation |
+| Librarian | all | `continuity` | Preserves institutional memory: release notes, commit summary, verification instructions, known limitations |
+
+### Detailed role descriptions
+
+---
+
+#### QA Spec · `qa-specification`
+
+Produces the quality contract before implementation begins.
+
+**Must produce:**
+- DoR (Definition of Ready): what must be true before implementation starts
+- DoD (Definition of Done): what must be true to close the feature
+- Acceptance criteria, edge cases, and test sketches
+- Behavioral test cases for AI components (governance-ai convoys)
+
+**Hard constraints:** no implementation code; no bias toward any specific approach; DoR must be satisfied before implementation starts.
+
+---
+
+#### Architect · `architecture-framing`
+
+Defines where polecats can and cannot go.
+
+**Must produce:**
+- System boundaries and explicit, checkable guardrails
+- Bead decomposition proposal
+- ADR updates (mandatory for cross-rig changes)
+- Risk assessment per impact area (governance convoys — every listed impact area must have an entry)
+
+**Hard constraints:** no implementation code; guardrails must be explicit and checkable.
+
+---
+
+#### Critic · `design-critique`
+
+The hard gate. No code before a CLEAR verdict.
+
+**Must produce:**
+- Findings report with severity levels
+- Verdict: **CLEAR** (convoy proceeds) or **BLOCKED** (crew member routes back to architecture-framing)
+- Evaluation of prompt spec completeness and safety (governance-ai convoys)
+
+**Hard constraints:** does not modify any documents or code; does not route itself — mails the crew member with findings and verdict.
+
+---
+
+#### Prompt Designer · `prompt-design` *(convoy-governance-ai only)*
+
+Produces the prompt specifications that Implementers must follow exactly.
+
+**Must produce:**
+- Versioned prompt definitions with rationale
+- Behavioral contracts and structured output schemas
+- Guardrails and refusal rules
+
+**Hard constraints:** no implementation code; all prompts must be versioned; Implementers are forbidden from improvising — if a spec is missing they stop and mail the crew member.
+
+---
+
+#### Implementer · `implementation`
+
+Builds one sub-task. Multiple Implementers run in parallel.
+
+**Must produce:**
+- Code committed to the branch within the assigned scope
+- Brief explanation of what changed and why
+
+**Hard constraints:** must not cross architect system boundaries; must not start before DoR is satisfied; must not touch files outside the assigned sub-task without notifying the crew member first; must follow Prompt Designer specs exactly (governance-ai); peer Implementers work in parallel — stay in your lane.
+
+---
+
+#### Test Runner · `validation`
+
+Reports pass/fail. Nothing more.
+
+**Must produce:**
+- PASS/FAIL report with logs, traces, and reproduction steps on failure
+- Behavioral test results for AI components: input/output pairs vs expected (governance-ai)
+
+**Hard constraints:** does not interpret results; does not attempt fixes; does not self-close; starts only when the crew member confirms all Implementers are done.
+
+---
+
+#### DevOps · `devops-stability` *(governance convoys)*
+
+Verifies the environment is stable and reproducible. Runs in parallel with validation.
+
+**Must produce:**
+- Reproducibility report (PASS/FAIL)
+- Environment snapshot: versions, configs, dependencies
+- List of issues found
+
+**Hard constraints:** does not fix failures; does not interpret root cause — reports only.
+
+---
+
+#### Librarian · `continuity`
+
+Closes the convoy by preserving institutional memory.
+
+**Must produce:**
+- Release notes and commit/bead summary
+- Change intent and impact (across all impact areas for governance convoys)
+- Versioned prompt spec references in effect (governance-ai)
+- Verification instructions and known limitations
+- Environment requirements confirmed by DevOps (governance)
+
+**Hard constraints:** does not alter code or tests; records what happened, not what should happen next.
