@@ -116,7 +116,6 @@ def normalize_finding(finding: Finding) -> Finding:
         issue=finding.issue.strip(),
         suggestion=finding.suggestion.strip(),
         severity=sev,
-        evidence=finding.evidence.strip(),
     )
 
 
@@ -176,7 +175,6 @@ def heuristic_agent2(text: str) -> Agent2Output:
                             "Replace with measurable obligations, exact deadlines, and clear acceptance criteria."
                         ),
                         severity="medium",
-                        evidence=f"The term '{term}' is inherently subjective and lacks defined criteria, creating ambiguity in contractual obligations.",
                     )
                 )
                 break
